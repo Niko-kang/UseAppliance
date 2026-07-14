@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>UseAppliance — Manual-Grounded Appliance Manipulation</title>
+    <meta
+      name="description"
+      content="MAGE, UseAppliance, and AppliancePlan: scaling manual-grounded appliance manipulation with data synthesis and unified planning. ACMMM 2026."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Outfit:wght@340;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="shell header-inner">
+        <a class="logo" href="#">UseAppliance</a>
+        <nav class="nav" aria-label="Primary">
+          <a href="#overview">Overview</a>
+          <a href="#mage">MAGE</a>
+          <a href="#dataset">Dataset</a>
+          <a href="#model">Model</a>
+          <a href="#results">Results</a>
+          <a href="#cite">Cite</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" aria-label="Project introduction">
+        <div class="hero-media" aria-hidden="true">
+          <img
+            src="assets/hero-appliance.jpg"
+            alt=""
+            class="hero-image"
+            width="1920"
+            height="1080"
+          />
+          <div class="hero-scrim"></div>
+        </div>
+        <div class="shell hero-content">
+          <div class="venue-row fade-up">
+            <span class="venue-badge">ACMMM 2026</span>
+          </div>
+          <h1 class="brand fade-up delay-1">UseAppliance</h1>
+          <p class="headline fade-up delay-2">
+            Manual-grounded appliance manipulation—from data synthesis to a unified planner.
+          </p>
+          <div class="cta-row fade-up delay-3">
+            <a
+              class="btn btn-primary"
+              href="7212_Scaling_Manual_Grounded_A.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Paper</a
+            >
+            <a
+              class="btn btn-ghost"
+              href="https://openreview.net/forum?id=o8kAoRq565"
+              target="_blank"
+              rel="noopener noreferrer"
+              >OpenReview</a
+            >
+            <a class="btn btn-ghost" href="#cite">BibTeX</a>
+            <span class="btn btn-disabled" title="Coming soon">Code · Soon</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="authors-bar">
+        <div class="shell">
+          <p class="paper-title">
+            Scaling Manual-Grounded Appliance Manipulation with Data Synthesis and Unified
+            Planning
+          </p>
+          <p class="authors">
+            Yuxing Long · Lei Kang · Ziyan Yu · Yuzheng Gao · Bin Cheng · Jiyao Zhang · Xiaoqi Li ·
+            Haolin Yang · Dongjiang Li · Hui Shen · Hao Dong
+          </p>
+          <p class="affiliations">
+            <span>Peking University</span>
+            <span class="aff-sep" aria-hidden="true"></span>
+            <span>JD.com</span>
+          </p>
+        </div>
+      </section>
+
+      <section id="abstract" class="section abstract-section">
+        <div class="shell narrow">
+          <h2 class="section-label">Abstract</h2>
+          <p class="abstract-text">
+            Operating household appliances requires long-horizon planning that is state-dependent
+            and robust to disturbances, yet existing large models fall short without sufficient
+            task-oriented data. We propose <strong>MAGE</strong>, a scalable synthesis pipeline with a
+            Hierarchical Appliance Graph (HAG) that generates grounding, planning, and closed-loop
+            recovery data from manuals. With MAGE we build <strong>UseAppliance</strong>—22 categories,
+            89K+ part annotations, 53K+ tasks, 33K+ closed-loop steps—and train
+            <strong>AppliancePlan</strong>, a 7B end-to-end planner. On RealAppliance-Bench it achieves
+            over 10× the best baseline on open-loop planning, leads across all tracks, and
+            transfers to real robots on six appliances.
+          </p>
+        </div>
+      </section>
+
+      <section id="overview" class="section">
+        <div class="shell">
+          <header class="section-head">
+            <p class="section-label">End-to-end appliance operation</p>
+            <h2>What AppliancePlan enables</h2>
+            <p>
+              Precise knob control, touch-panel operation, and closed-loop
+              replanning under disturbance—while outperforming strong large-model
+              baselines on RealAppliance-Bench.
+            </p>
+          </header>
+          <figure class="figure reveal">
+            <img
+              src="assets/figures/fig1-capabilities.png"
+              alt="Capabilities of AppliancePlan: manipulation sequences and RealAppliance-Bench radar comparison."
+              loading="lazy"
+            />
+            <figcaption>
+              <p>
+                Capabilities of our AppliancePlan model. Left: AppliancePlan plans
+                manipulation for diverse appliances and updates the plan when
+                interrupted. Right: AppliancePlan outperforms strong large-model
+                baselines on RealAppliance-Bench.
+              </p>
+              <p>
+                On RealAppliance-Bench it achieves over 10× the best baseline on
+                open-loop planning (31.36% vs. 2.68% task success) and leads the
+                sequential setting by a wide margin (28.07% vs. 4.08%). Real-robot
+                experiments on six household appliances further confirm effective
+                physical transfer (40.00% vs. 3.33% for GPT-5).
+              </p>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="mage" class="section section-alt">
+        <div class="shell">
+          <header class="section-head">
+            <p class="section-label">MAGE</p>
+            <h2>From manuals to grounded training data</h2>
+            <p>
+              MAGE builds a Hierarchical Appliance Graph (HAG) from document to
+              page, part, and state, then synthesizes tasks, parameterized plans,
+              planning-aligned observations, and interruption or recovery steps.
+            </p>
+          </header>
+          <figure class="figure reveal">
+            <img
+              src="assets/figures/fig2-mage.png"
+              alt="Overview of MAGE and the Hierarchical Appliance Graph for data synthesis."
+              loading="lazy"
+            />
+            <figcaption>
+              <p>
+                Overview of MAGE. The first two stages construct the Hierarchical
+                Appliance Graph (HAG) via automated collection and human-verified
+                annotation; the latter two consume the completed HAG to
+                synthesize three types of data—part grounding annotations,
+                open-loop manipulation plans, and observation images with
+                closed-loop recovery data.
+              </p>
+              <p>
+                The fundamental bottleneck for manual-grounded appliance
+                manipulation is the lack of large-scale training data. MAGE
+                automates both HAG construction and data generation, with human
+                verification gates after each stage.
+              </p>
+            </figcaption>
+          </figure>
+          <ol class="step-list">
+            <li class="reveal">
+              <span class="step-num">01</span>
+              <div>
+                <h3>Manual collection</h3>
+                <p>
+                  Agents gather and classify real manuals into covers, overviews,
+                  safety, and operating pages.
+                </p>
+              </div>
+            </li>
+            <li class="reveal">
+              <span class="step-num">02</span>
+              <div>
+                <h3>Part &amp; state annotation</h3>
+                <p>
+                  Multi-view boxes and discrete state sets populate the part and
+                  state layers of the HAG.
+                </p>
+              </div>
+            </li>
+            <li class="reveal">
+              <span class="step-num">03</span>
+              <div>
+                <h3>Task &amp; plan synthesis</h3>
+                <p>
+                  Templates are instantiated into language instructions and
+                  atomic-action plans with full parameters.
+                </p>
+              </div>
+            </li>
+            <li class="reveal">
+              <span class="step-num">04</span>
+              <div>
+                <h3>Observation &amp; recovery</h3>
+                <p>
+                  Each step gets a state-aligned image; disturbances are injected
+                  to train closed-loop adjustment.
+                </p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="dataset" class="section">
+        <div class="shell">
+          <header class="section-head">
+            <p class="section-label">UseAppliance</p>
+            <h2>Scale of the training corpus</h2>
+            <p>
+              UseAppliance is the first large-scale dataset for manual-grounded
+              appliance manipulation planning, with long-tail part coverage and
+              rich action-transition structure.
+            </p>
+          </header>
+
+          <ul class="scale-grid" role="list">
+            <li class="reveal">
+              <span class="scale-num">22</span>
+              <span class="scale-label">Appliance categories</span>
+            </li>
+            <li class="reveal">
+              <span class="scale-num">89K+</span>
+              <span class="scale-label">Part annotations</span>
+            </li>
+            <li class="reveal">
+              <span class="scale-num">53K+</span>
+              <span class="scale-label">Manipulation tasks</span>
+            </li>
+            <li class="reveal">
+              <span class="scale-num">33K+</span>
+              <span class="scale-label">Closed-loop steps</span>
+            </li>
+          </ul>
+
+          <figure class="figure reveal" style="margin-top: 2.5rem">
+            <img
+              src="assets/figures/fig3-useappliance.png"
+              alt="UseAppliance statistics: part category distribution and action-transition flow."
+              loading="lazy"
+            />
+            <figcaption>
+              <p>
+                Statistics of UseAppliance. (a) Long-tail distribution of 89K+
+                part bounding boxes. (b) Action-transition flow of 53K+ open-loop
+                planning tasks.
+              </p>
+              <p>
+                Part annotations follow a long-tail distribution: common parts
+                such as doors, buttons, and knobs are densely labeled, while
+                appliance-specific controls appear infrequently. Tasks average
+                8.15 open-loop steps, with action distributions varying by
+                category—knob-heavy appliances emphasize Rotate, while
+                panel-based appliances rely more on Press.
+              </p>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="model" class="section section-alt">
+        <div class="shell">
+          <header class="section-head">
+            <p class="section-label">AppliancePlan</p>
+            <h2>One 7B model for grounding, planning, and recovery</h2>
+            <p>
+              Built on Qwen2.5-VL-7B-Instruct and trained on UseAppliance,
+              AppliancePlan jointly optimizes three main tasks and three
+              auxiliaries as next-token prediction.
+            </p>
+          </header>
+          <figure class="figure reveal">
+            <img
+              src="assets/figures/fig4-applianceplan.png"
+              alt="Overview of the AppliancePlan model with main and auxiliary training objectives."
+              loading="lazy"
+            />
+            <figcaption>
+              <p>
+                Overview of AppliancePlan model. AppliancePlan is an end-to-end
+                model for manual-grounded appliance manipulation planning,
+                trained with three main objectives and three auxiliary
+                objectives.
+              </p>
+              <p>
+                Built on Qwen2.5-VL-7B-Instruct, it jointly learns part
+                grounding, open-loop planning, and closed-loop adjustment, with
+                auxiliaries for manual–appliance part alignment, key-step action
+                prediction, and part-state judgment—all cast as next-token
+                prediction on UseAppliance.
+              </p>
+            </figcaption>
+          </figure>
+          <div class="task-grid">
+            <article class="reveal">
+              <p class="explain-kicker">01 · Grounding</p>
+              <h3>Part grounding</h3>
+              <p>
+                Locate the manual-named part in the observation and return a
+                bounding box.
+              </p>
+            </article>
+            <article class="reveal">
+              <p class="explain-kicker">02 · Planning</p>
+              <h3>Open-loop planning</h3>
+              <p>
+                Emit a full atomic-action sequence from manuals, scene, and
+                instruction.
+              </p>
+            </article>
+            <article class="reveal">
+              <p class="explain-kicker">03 · Recovery</p>
+              <h3>Closed-loop adjustment</h3>
+              <p>
+                Use history and the latest observation to choose the next
+                corrective step.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="results" class="section">
+        <div class="shell">
+          <header class="section-head">
+            <p class="section-label">RealAppliance-Bench</p>
+            <h2>Results that lead every track</h2>
+            <p>
+              AppliancePlan beats proprietary MLLMs, open-source MLLMs, and
+              embodied planners on grounding, open-loop planning, closed-loop
+              adjustment, and sequential recovery.
+            </p>
+          </header>
+
+          <div class="results-layout">
+            <div class="result-highlight reveal">
+              <p class="result-metric">>10×</p>
+              <p class="result-caption">
+                Open-loop planning vs. the best baseline (47.86 / 31.36
+                completion / success)
+              </p>
+            </div>
+            <ul class="result-points" role="list">
+              <li class="reveal">
+                Part grounding total 22.96 / 22.24 Avg / mAP@0.5—best among all
+                compared models.
+              </li>
+              <li class="reveal">
+                Closed-loop adjustment total 37.12 step-wise success;
+                sequential track reaches 44.59 / 28.07.
+              </li>
+              <li class="reveal">
+                Real-robot transfer on six household appliances further confirms
+                physical applicability.
+              </li>
+            </ul>
+          </div>
+
+          <figure class="figure figure-scroll reveal">
+            <img
+              src="assets/figures/table2-results.png"
+              alt="Results on RealAppliance-Bench across three standard evaluation tracks."
+              loading="lazy"
+            />
+            <figcaption>
+              <p>
+                Results on RealAppliance-Bench across three standard evaluation
+                tracks.
+              </p>
+              <p>
+                AppliancePlan ranks first on every track. Open-loop planning
+                reaches 47.86% completion / 31.36% success—over 10× the best
+                baseline (4.36% / 2.68%). Closed-loop adjustment achieves 37.12%
+                step-wise success. Ablations show Manual–Appliance Part Alignment
+                is most critical for grounding, while Key-step Action Prediction
+                matters most for long-horizon metrics.
+              </p>
+            </figcaption>
+          </figure>
+
+          <figure class="figure figure-scroll reveal" style="margin-top: 2.5rem">
+            <img
+              src="assets/figures/table3-sequential.png"
+              alt="Sequential planning and adjustment results on RealAppliance-Bench."
+              loading="lazy"
+            />
+            <figcaption>
+              <p>
+                Sequential planning and adjustment results based on
+                RealAppliance-Bench. This evaluation-only setting combines
+                open-loop planning with online closed-loop correction. Entries
+                report task completion rate / task success rate.
+              </p>
+              <p>
+                This end-to-end setting is the most realistic, as both the
+                initial plan and subsequent corrections are model-generated.
+                AppliancePlan achieves 44.59% completion and 28.07%
+                success—versus 5.84% / 4.08% for the best baseline—confirming
+                that planning and correction gains transfer to long-horizon
+                execution, including recovery from the model’s own errors.
+              </p>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section keywords-section section-alt">
+        <div class="shell narrow">
+          <h2 class="section-label">Keywords</h2>
+          <p class="keywords">
+            appliance manipulation planning · household robotics · multimodal foundation models
+          </p>
+        </div>
+      </section>
+
+      <section id="cite" class="section cite-section">
+        <div class="shell narrow">
+          <header class="section-head">
+            <h2>Cite</h2>
+            <p>If you use this work, please cite the ACMMM 2026 paper.</p>
+          </header>
+          <div class="bibtex-wrap">
+            <button type="button" class="copy-btn" id="copy-bibtex">Copy</button>
+            <pre id="bibtex"><code>@inproceedings{long2026useappliance,
+  title     = {Scaling Manual-Grounded Appliance Manipulation with Data Synthesis and Unified Planning},
+  author    = {Long, Yuxing and Kang, Lei and Yu, Ziyan and Gao, Yuzheng and Cheng, Bin and Zhang, Jiyao and Li, Xiaoqi and Yang, Haolin and Li, Dongjiang and Shen, Hui and Dong, Hao},
+  booktitle = {Proceedings of the ACM International Conference on Multimedia (ACMMM)},
+  year      = {2026}
+}</code></pre>
+          </div>
+          <p class="links-row">
+            <a href="7212_Scaling_Manual_Grounded_A.pdf" target="_blank" rel="noopener noreferrer">PDF</a>
+            <a href="https://openreview.net/forum?id=o8kAoRq565" target="_blank" rel="noopener noreferrer">OpenReview</a>
+            <span>CC BY 4.0</span>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell footer-inner">
+        <p>UseAppliance · ACMMM 2026</p>
+        <p>
+          Licensed under
+          <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>
+        </p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
