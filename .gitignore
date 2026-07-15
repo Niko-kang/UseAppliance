@@ -19,6 +19,11 @@ assets/figures/table3-sequential.jpg
 assets/figures/fig1-capabilities.jpg
 assets/figures/fig4-applianceplan.jpg
 tmp/
+assets/videos/*.log
+
+# Full-length source reel (web serves cut clips under assets/videos/)
+AppliancePlan_video_mm.mp4
+*.mp4.log
 
 # Raw screenshot duplicates (canonical copies live under assets/figures/)
 截屏*.png
