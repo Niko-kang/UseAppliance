@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b1b38" />
     <title>UseAppliance — Manual-Grounded Appliance Manipulation</title>
     <meta
       name="description"
@@ -11,19 +12,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Outfit:wght@340;400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;550;600;650;700;750;800;850&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260715j" />
+    <link rel="stylesheet" href="styles.css?v=20261002e" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="site-header">
       <div class="shell header-inner">
-        <a class="logo" href="#">UseAppliance</a>
-        <nav class="nav" aria-label="Primary">
-          <a href="#overview">Overview</a>
+        <a class="logo" href="#top" aria-label="UseAppliance home"><span class="brand-mark" aria-hidden="true"></span>UseAppliance</a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menu <span aria-hidden="true">+</span></button>
+        <nav class="nav" id="primary-nav" aria-label="Primary">
+          <a href="#abstract">Abstract</a>
           <a href="#mage">MAGE</a>
           <a href="#dataset">Dataset</a>
           <a href="#model">Model</a>
@@ -35,103 +37,58 @@
     </header>
 
     <main id="main">
-      <section class="hero" aria-label="Project introduction">
-        <div class="hero-media" aria-hidden="true">
-          <img
-            src="assets/hero-appliance.jpg?v=20260715i"
-            alt=""
-            class="hero-image"
-            width="1920"
-            height="1080"
-          />
-          <div class="hero-scrim"></div>
-        </div>
+      <section id="top" class="hero" aria-label="Project introduction">
+
         <div class="shell hero-content">
-          <div class="venue-row fade-up">
-            <span class="venue-badge">ACMMM 2026</span>
-          </div>
-          <h1 class="brand fade-up delay-1">UseAppliance</h1>
-          <p class="headline fade-up delay-2">
-            Manual-grounded appliance manipulation—from data synthesis to a unified planner.
-          </p>
-          <div class="cta-row fade-up delay-3">
-            <a
-              class="btn btn-primary"
-              href="https://arxiv.org/pdf/2608.15863"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Paper</a
-            >
-            <a
-              class="btn btn-ghost"
-              href="https://openreview.net/forum?id=o8kAoRq565"
-              target="_blank"
-              rel="noopener noreferrer"
-              >OpenReview</a
-            >
-            <a class="btn btn-ghost" href="#cite">BibTeX</a>
-            <span class="btn btn-disabled" title="Coming soon">Code · Soon</span>
-          </div>
-        </div>
-      </section>
-
-      <section class="authors-bar">
-        <div class="shell">
-          <p class="paper-title">
-            Scaling Manual-Grounded Appliance Manipulation with Data Synthesis and Unified
-            Planning
-          </p>
-          <p class="authors">
-            Yuxing Long<sup>*</sup> · Lei Kang<sup>*1,2</sup> · Ziyan Yu<sup>1</sup> · Yuzheng Gao<sup>1</sup> ·
-            Bin Cheng<sup>2</sup> · Jiyao Zhang · Xiaoqi Li<sup>1</sup> · Haolin Yang<sup>1</sup> ·
-            Dongjiang Li<sup>2</sup> · Hui Shen<sup>2</sup> · Hao Dong<sup>†1</sup>
-          </p>
-          <ul class="affil-list">
-            <li><sup>1</sup> CFCS, School of Computer Science, Peking University</li>
-            <li><sup>2</sup> Jingdong Technology Information Technology Co., Ltd</li>
-          </ul>
-          <p class="affil-notes">
-            <span><sup>*</sup> Equal contribution</span>
-            <span><sup>†</sup> Corresponding author</span>
-          </p>
-        </div>
-      </section>
-
-      <section id="abstract" class="section abstract-section">
-        <div class="shell narrow">
-          <h2 class="section-label">Abstract</h2>
-          <p class="abstract-text">
-            Operating household appliances requires long-horizon planning that is state-dependent
-            and robust to disturbances, yet existing large models fall short without sufficient
-            task-oriented data. We propose <strong>MAGE</strong>, a scalable synthesis pipeline with a
-            Hierarchical Appliance Graph (HAG) that generates grounding, planning, and closed-loop
-            recovery data from manuals. With MAGE we build <strong>UseAppliance</strong>—22 categories,
-            89K+ part annotations, 53K+ tasks, 33K+ closed-loop steps—and train
-            <strong>AppliancePlan</strong>, a 7B end-to-end planner. On RealAppliance-Bench it achieves
-            over 10× the best baseline on open-loop planning, leads across all tracks, and
-            transfers to real robots on six appliances.
-          </p>
-        </div>
-      </section>
-
-      <section id="overview" class="section">
-        <div class="shell">
-          <header class="section-head">
-            <p class="section-label">End-to-end appliance operation</p>
-            <h2>What AppliancePlan enables</h2>
-            <p>
-              Precise knob control, touch-panel operation, and closed-loop
-              replanning under disturbance—while outperforming strong large-model
-              baselines on RealAppliance-Bench.
+          <p class="hero-eyebrow"><span class="venue-badge">ACMMM 2026</span><span>Manual-grounded robotics</span></p>
+          <h1 class="brand">Use<span>Appliance</span></h1>
+          <p class="paper-title">Scaling Manual-Grounded Appliance Manipulation<br class="title-break" /> with Data Synthesis and Unified Planning</p>
+          <p class="headline research-links"><a href="#mage"><strong>MAGE</strong> <span>Data synthesis</span></a><span class="path-separator" aria-hidden="true">→</span><a href="#dataset"><strong>UseAppliance</strong> <span>Dataset</span></a><span class="path-separator" aria-hidden="true">→</span><a href="#model"><strong>AppliancePlan</strong> <span>Unified planning</span></a></p>
+          <div class="author-block">
+            <p class="authors" aria-label="Authors and affiliations">
+              <span class="author-row">
+                <span class="author">Yuxing Long<sup>1,*</sup></span>
+                <span class="author">Lei Kang<sup>1,*</sup></span>
+                <span class="author">Ziyan Yu<sup>1</sup></span>
+                <span class="author">Yuzheng Gao<sup>1</sup></span>
+                <span class="author">Bin Cheng<sup>2</sup></span>
+                <span class="author">Jiyao Zhang<sup>1</sup></span>
+              </span>
+              <span class="author-row">
+                <span class="author">Xiaoqi Li<sup>1</sup></span>
+                <span class="author">Haolin Yang<sup>1</sup></span>
+                <span class="author">Dongjiang Li<sup>3</sup></span>
+                <span class="author">Hui Shen<sup>3</sup></span>
+                <span class="author">Hao Dong<sup>1,†</sup></span>
+              </span>
             </p>
-          </header>
-          <figure class="figure reveal">
-            <img
+            <ul class="affil-list" aria-label="Affiliations">
+              <li id="affiliation-1"><sup>1</sup><span>Center on Frontiers of Computing Studies, School of Computer Science, Peking University</span></li>
+              <li id="affiliation-2"><sup>2</sup><span>Beijing University of Aeronautics and Astronautics</span></li>
+              <li id="affiliation-3"><sup>3</sup><span>Jingdong Technology Information Technology Co., Ltd</span></li>
+            </ul>
+            <p class="affil-notes">
+              <span><sup>*</sup> Equal contribution</span>
+              <span><sup>†</sup> Corresponding author: <a href="mailto:hao.dong@pku.edu.cn">hao.dong@pku.edu.cn</a></span>
+            </p>
+          </div>
+          <div class="cta-row" aria-label="Project links">
+            <a class="btn btn-primary" href="https://arxiv.org/pdf/2608.15863" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8l-5-5Z M14 3v5h5 M9 13h6 M9 17h6"/></svg>Paper <span class="btn-tag">PDF ↗</span></a>
+            <a class="btn btn-ghost" href="https://openreview.net/forum?id=o8kAoRq565" target="_blank" rel="noopener noreferrer">OpenReview <span aria-hidden="true">↗</span></a>
+            <a class="btn btn-ghost" href="#cite">BibTeX <span aria-hidden="true">↓</span></a>
+            <span class="btn btn-disabled" aria-disabled="true">Code <span class="btn-tag">Soon</span></span>
+          </div>
+          <div id="overview" class="hero-overview">
+            <div class="figure-topline"><span>Research overview</span><span>Grounding · Planning · Recovery</span></div>
+            <figure class="figure hero-figure">
+            <a class="figure-image-link" href="assets/figures/fig1-capabilities.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-size figure: Capabilities of AppliancePlan: manipulation sequences and RealAppliance-Bench radar comparison."><img width="1916" height="1042"
               src="assets/figures/fig1-capabilities.png"
               alt="Capabilities of AppliancePlan: manipulation sequences and RealAppliance-Bench radar comparison."
-              loading="lazy"
-            />
+              fetchpriority="high"
+            /></a>
             <figcaption>
+              <div class="caption-heading"><h2>What AppliancePlan enables</h2><a class="full-size-link" href="assets/figures/fig1-capabilities.png" target="_blank" rel="noopener noreferrer">View full-size figure <span aria-hidden="true">↗</span></a></div>
+              <p class="overview-summary">Precise knob control, touch-panel operation, and closed-loop replanning under disturbance—while outperforming strong large-model baselines on RealAppliance-Bench.</p>
               <p>
                 Capabilities of our AppliancePlan model. Left: AppliancePlan plans
                 manipulation for diverse appliances and updates the plan when
@@ -147,13 +104,49 @@
               </p>
             </figcaption>
           </figure>
+          </div>
+          <div class="hero-stat-row" aria-label="Research highlights">
+            <div><strong>&gt;10×</strong><span>Open-loop task success<br />vs. best baseline</span></div>
+            <div><strong>7B</strong><span>Unified model for<br />grounding &amp; planning</span></div>
+            <div><strong>6</strong><span>Real household<br />appliances</span></div>
+          </div>
+          <a class="explore-link" href="#abstract">Explore the research <span aria-hidden="true">↓</span></a>
+        </div>
+      </section>
+
+      <section id="abstract" class="section abstract-section">
+        <div class="shell">
+          <header class="section-head">
+            <p class="section-label">Abstract</p>
+            <h2>Everyday appliances.<br />A demanding planning problem.</h2>
+            <p>A complete path from appliance documentation to grounded, long-horizon robot planning.</p>
+          </header>
+          <div class="abstract-layout">
+          <p class="abstract-text">
+            Operating household appliances requires long-horizon planning that is state-dependent
+            and robust to disturbances, yet existing large models fall short without sufficient
+            task-oriented data. We propose <strong>MAGE</strong>, a scalable synthesis pipeline with a
+            Hierarchical Appliance Graph (HAG) that generates grounding, planning, and closed-loop
+            recovery data from manuals. With MAGE we build <strong>UseAppliance</strong>—22 categories,
+            89K+ part annotations, 53K+ tasks, 33K+ closed-loop steps—and train
+            <strong>AppliancePlan</strong>, a 7B end-to-end planner. On RealAppliance-Bench it achieves
+            over 10× the best baseline on open-loop planning, leads across all tracks, and
+            transfers to real robots on six appliances.
+          </p>
+          <aside class="research-thesis" aria-label="Research components">
+            <p class="explain-kicker">Inside the manual</p>
+            <p class="thesis-title">Structure the knowledge.<br />Ground the operation.</p>
+            <ol class="manual-tree"><li><span>01</span> Document</li><li><span>02</span> Page</li><li><span>03</span> Part</li><li><span>04</span> State</li></ol>
+            <p class="graph-note">The Hierarchical Appliance Graph connects documentation to parts and states for data synthesis.</p>
+          </aside>
+          </div>
         </div>
       </section>
 
       <section id="mage" class="section section-alt">
         <div class="shell">
           <header class="section-head">
-            <p class="section-label">MAGE</p>
+            <p class="section-label">01 / MAGE · The data engine</p>
             <h2>From manuals to grounded training data</h2>
             <p>
               MAGE builds a Hierarchical Appliance Graph (HAG) from document to
@@ -162,12 +155,14 @@
             </p>
           </header>
           <figure class="figure reveal">
-            <img
+            <div class="figure-topline"><span>Synthesis pipeline</span><span>Hierarchical Appliance Graph</span></div>
+            <a class="figure-image-link" href="assets/figures/fig2-mage.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-size figure: Overview of MAGE and the Hierarchical Appliance Graph for data synthesis."><img width="1916" height="1382"
               src="assets/figures/fig2-mage.png"
               alt="Overview of MAGE and the Hierarchical Appliance Graph for data synthesis."
               loading="lazy"
-            />
+            /></a>
             <figcaption>
+              <a class="full-size-link" href="assets/figures/fig2-mage.png" target="_blank" rel="noopener noreferrer">View full-size figure <span aria-hidden="true">↗</span></a>
               <p>
                 Overview of MAGE. The first two stages construct the Hierarchical
                 Appliance Graph (HAG) via automated collection and human-verified
@@ -232,7 +227,7 @@
       <section id="dataset" class="section">
         <div class="shell">
           <header class="section-head">
-            <p class="section-label">UseAppliance</p>
+            <p class="section-label">02 / UseAppliance · The corpus</p>
             <h2>Scale of the training corpus</h2>
             <p>
               UseAppliance is the first large-scale dataset for manual-grounded
@@ -261,12 +256,14 @@
           </ul>
 
           <figure class="figure reveal" style="margin-top: 2.5rem">
-            <img
+            <div class="figure-topline"><span>Dataset composition</span><span>Part coverage · Action transitions</span></div>
+            <a class="figure-image-link" href="assets/figures/fig3-useappliance.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-size figure: UseAppliance statistics: part category distribution and action-transition flow."><img width="1916" height="500"
               src="assets/figures/fig3-useappliance.png"
               alt="UseAppliance statistics: part category distribution and action-transition flow."
               loading="lazy"
-            />
+            /></a>
             <figcaption>
+              <a class="full-size-link" href="assets/figures/fig3-useappliance.png" target="_blank" rel="noopener noreferrer">View full-size figure <span aria-hidden="true">↗</span></a>
               <p>
                 Statistics of UseAppliance. (a) Long-tail distribution of 89K+
                 part bounding boxes. (b) Action-transition flow of 53K+ open-loop
@@ -288,7 +285,7 @@
       <section id="model" class="section section-alt">
         <div class="shell">
           <header class="section-head">
-            <p class="section-label">AppliancePlan</p>
+            <p class="section-label">03 / AppliancePlan · The planner</p>
             <h2>One 7B model for grounding, planning, and recovery</h2>
             <p>
               Built on Qwen2.5-VL-7B-Instruct and trained on UseAppliance,
@@ -297,12 +294,14 @@
             </p>
           </header>
           <figure class="figure reveal">
-            <img
+            <div class="figure-topline"><span>Model architecture</span><span>Three main + three auxiliary objectives</span></div>
+            <a class="figure-image-link" href="assets/figures/fig4-applianceplan.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-size figure: Overview of the AppliancePlan model with main and auxiliary training objectives."><img width="1916" height="1098"
               src="assets/figures/fig4-applianceplan.png"
               alt="Overview of the AppliancePlan model with main and auxiliary training objectives."
               loading="lazy"
-            />
+            /></a>
             <figcaption>
+              <a class="full-size-link" href="assets/figures/fig4-applianceplan.png" target="_blank" rel="noopener noreferrer">View full-size figure <span aria-hidden="true">↗</span></a>
               <p>
                 Overview of AppliancePlan model. AppliancePlan is an end-to-end
                 model for manual-grounded appliance manipulation planning,
@@ -350,7 +349,7 @@
       <section id="results" class="section">
         <div class="shell">
           <header class="section-head">
-            <p class="section-label">RealAppliance-Bench</p>
+            <p class="section-label">Evaluation / RealAppliance-Bench</p>
             <h2>Results that lead every track</h2>
             <p>
               AppliancePlan beats proprietary MLLMs, open-source MLLMs, and
@@ -361,10 +360,10 @@
 
           <div class="results-layout">
             <div class="result-highlight reveal">
+              <p class="explain-kicker">Open-loop planning</p>
               <p class="result-metric">>10×</p>
               <p class="result-caption">
-                Open-loop planning vs. the best baseline (47.86 / 31.36
-                completion / success)
+                Task success vs. the best baseline<br />31.36% vs. 2.68%
               </p>
             </div>
             <ul class="result-points" role="list">
@@ -383,13 +382,30 @@
             </ul>
           </div>
 
+          <div class="comparison-grid" aria-label="Task success comparisons">
+            <article class="comparison-card">
+              <p class="explain-kicker">01 · Open-loop planning</p><h3>From manuals to complete plans.</h3>
+              <div class="bar-label"><span>AppliancePlan</span><strong>31.36%</strong></div><div class="bar-track"><span style="--value:31.36%"></span></div>
+              <div class="bar-label baseline"><span>Best baseline</span><strong>2.68%</strong></div><div class="bar-track baseline"><span style="--value:2.68%"></span></div>
+              <p class="chart-note">Task success rate · RealAppliance-Bench · 0–100% scale</p>
+            </article>
+            <article class="comparison-card">
+              <p class="explain-kicker">02 · Real-robot transfer</p><h3>Grounded in the physical world.</h3>
+              <div class="bar-label"><span>AppliancePlan</span><strong>40.00%</strong></div><div class="bar-track"><span style="--value:40%"></span></div>
+              <div class="bar-label baseline"><span>GPT-5</span><strong>3.33%</strong></div><div class="bar-track baseline"><span style="--value:3.33%"></span></div>
+              <p class="chart-note">Task success rate · Six household appliances · 0–100% scale</p>
+            </article>
+          </div>
+
           <figure class="figure figure-scroll reveal">
-            <img
+            <div class="figure-topline"><span>Benchmark results</span><span>RealAppliance-Bench</span></div>
+            <a class="figure-image-link" href="assets/figures/table2-results.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-size figure: Results on RealAppliance-Bench across three standard evaluation tracks."><img width="1916" height="1630"
               src="assets/figures/table2-results.png"
               alt="Results on RealAppliance-Bench across three standard evaluation tracks."
               loading="lazy"
-            />
+            /></a>
             <figcaption>
+              <a class="full-size-link" href="assets/figures/table2-results.png" target="_blank" rel="noopener noreferrer">View full-size figure <span aria-hidden="true">↗</span></a>
               <p>
                 Results on RealAppliance-Bench across three standard evaluation
                 tracks.
@@ -406,12 +422,14 @@
           </figure>
 
           <figure class="figure figure-scroll reveal" style="margin-top: 2.5rem">
-            <img
+            <div class="figure-topline"><span>Sequential evaluation</span><span>Planning + online correction</span></div>
+            <a class="figure-image-link" href="assets/figures/table3-sequential.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-size figure: Sequential planning and adjustment results on RealAppliance-Bench."><img width="1916" height="590"
               src="assets/figures/table3-sequential.png"
               alt="Sequential planning and adjustment results on RealAppliance-Bench."
               loading="lazy"
-            />
+            /></a>
             <figcaption>
+              <a class="full-size-link" href="assets/figures/table3-sequential.png" target="_blank" rel="noopener noreferrer">View full-size figure <span aria-hidden="true">↗</span></a>
               <p>
                 Sequential planning and adjustment results based on
                 RealAppliance-Bench. This evaluation-only setting combines
@@ -434,7 +452,7 @@
       <section id="robot" class="section section-alt">
         <div class="shell">
           <header class="section-head">
-            <p class="section-label">Real Robot</p>
+            <p class="section-label">04 / Real appliances · The deployment</p>
             <h2>Deployed on real household appliances</h2>
             <p>
               Three real-robot demos: mechanical controls, touch panels, and
@@ -448,7 +466,8 @@
                 <video
                   controls
                   playsinline
-                  preload="none"
+                  preload="metadata"
+                  aria-label="Mechanical controls demo"
                   poster="assets/videos/robot-mechanical-poster.jpg?v=2"
                   src="assets/videos/robot-mechanical.mp4?v=2"
                 >
@@ -456,7 +475,7 @@
                 </video>
               </div>
               <figcaption>
-                <h3>Mechanical knob, button, and lever</h3>
+                <p class="explain-kicker">01 · Mechanical controls</p><h3>Mechanical knob, button, and lever</h3>
                 <p>
                   Air fryer, toaster, blender, and microwave—setting temperature,
                   browning level, buttons, and timer dials from manuals.
@@ -469,7 +488,8 @@
                 <video
                   controls
                   playsinline
-                  preload="none"
+                  preload="metadata"
+                  aria-label="Touch control panel demo"
                   poster="assets/videos/robot-touch-poster.jpg?v=2"
                   src="assets/videos/robot-touch.mp4?v=2"
                 >
@@ -477,7 +497,7 @@
                 </video>
               </div>
               <figcaption>
-                <h3>Touch control panel</h3>
+                <p class="explain-kicker">02 · Touch interaction</p><h3>Touch control panel</h3>
                 <p>
                   Coffee machine espresso brew and rice-cooker steaming mode via
                   capacitive panel icons grounded in the manuals.
@@ -490,7 +510,8 @@
                 <video
                   controls
                   playsinline
-                  preload="none"
+                  preload="metadata"
+                  aria-label="External interference recovery demo"
                   poster="assets/videos/robot-interference-poster.jpg?v=2"
                   src="assets/videos/robot-interference.mp4?v=2"
                 >
@@ -498,7 +519,7 @@
                 </video>
               </div>
               <figcaption>
-                <h3>Adjustment for external interference</h3>
+                <p class="explain-kicker">03 · Closed-loop recovery</p><h3>Adjustment for external interference</h3>
                 <p>
                   Closed-loop recovery when the environment interrupts the plan—
                   microwave, air fryer, rice cooker, and coffee machine cases.
@@ -521,11 +542,13 @@
       <section id="cite" class="section cite-section">
         <div class="shell narrow">
           <header class="section-head">
-            <h2>Cite</h2>
+            <p class="section-label">Citation</p>
+            <h2>Build on UseAppliance.</h2>
             <p>If you use this work, please cite the ACMMM 2026 paper.</p>
           </header>
           <div class="bibtex-wrap">
-            <button type="button" class="copy-btn" id="copy-bibtex">Copy</button>
+            <div class="bibtex-header"><span>BibTeX · ACMMM 2026</span><button type="button" class="copy-btn" id="copy-bibtex" aria-label="Copy BibTeX citation">Copy citation</button></div>
+            <p class="copy-status sr-only" role="status" aria-live="polite" id="copy-status"></p>
             <pre id="bibtex"><code>@inproceedings{long2026useappliance,
   title     = {Scaling Manual-Grounded Appliance Manipulation with Data Synthesis and Unified Planning},
   author    = {Long, Yuxing and Kang, Lei and Yu, Ziyan and Gao, Yuzheng and Cheng, Bin and Zhang, Jiyao and Li, Xiaoqi and Yang, Haolin and Li, Dongjiang and Shen, Hui and Dong, Hao},
@@ -544,7 +567,7 @@
 
     <footer class="site-footer">
       <div class="shell footer-inner">
-        <p>UseAppliance · ACMMM 2026</p>
+        <div><a class="logo" href="#top"><span class="brand-mark" aria-hidden="true"></span>UseAppliance</a><p>Manual-grounded appliance manipulation · ACMMM 2026</p></div>
         <p>
           Licensed under
           <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>
@@ -552,6 +575,6 @@
       </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=20261002d"></script>
   </body>
 </html>
