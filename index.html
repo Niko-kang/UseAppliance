@@ -15,7 +15,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;550;600;650;700;750;800;850&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20261002c" />
+    <link rel="stylesheet" href="styles.css?v=20261002d" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -43,19 +43,34 @@
           <p class="hero-eyebrow"><span class="venue-badge">ACMMM 2026</span><span>Manual-grounded robotics</span></p>
           <h1 class="brand">Use<span>Appliance</span></h1>
           <p class="paper-title">Scaling Manual-Grounded Appliance Manipulation<br class="title-break" /> with Data Synthesis and Unified Planning</p>
-          <p class="headline">MAGE data synthesis · UseAppliance dataset · AppliancePlan unified planning</p>
+          <p class="headline research-links"><a href="#mage"><strong>MAGE</strong> <span>Data synthesis</span></a><span class="path-separator" aria-hidden="true">→</span><a href="#dataset"><strong>UseAppliance</strong> <span>Dataset</span></a><span class="path-separator" aria-hidden="true">→</span><a href="#model"><strong>AppliancePlan</strong> <span>Unified planning</span></a></p>
           <div class="author-block">
-            <p class="authors"><span class="author">
-            Yuxing Long<sup>*</sup></span><span class="author">Lei Kang<sup>*1,2</sup></span><span class="author">Ziyan Yu<sup>1</sup></span><span class="author">Yuzheng Gao<sup>1</sup></span><span class="author">Bin Cheng<sup>2</sup></span><span class="author">Jiyao Zhang</span><span class="author">Xiaoqi Li<sup>1</sup></span><span class="author">Haolin Yang<sup>1</sup></span><span class="author">Dongjiang Li<sup>2</sup></span><span class="author">Hui Shen<sup>2</sup></span><span class="author">Hao Dong<sup>†1</sup>
-          </span></p>
-            <ul class="affil-list">
-            <li><sup>1</sup> CFCS, School of Computer Science, Peking University</li>
-            <li><sup>2</sup> Jingdong Technology Information Technology Co., Ltd</li>
-          </ul>
+            <p class="authors" aria-label="Authors and affiliations">
+              <span class="author-row">
+                <span class="author">Yuxing Long<sup>1,*</sup></span>
+                <span class="author">Lei Kang<sup>1,*</sup></span>
+                <span class="author">Ziyan Yu<sup>1</sup></span>
+                <span class="author">Yuzheng Gao<sup>1</sup></span>
+                <span class="author">Bin Cheng<sup>2</sup></span>
+                <span class="author">Jiyao Zhang<sup>1</sup></span>
+              </span>
+              <span class="author-row">
+                <span class="author">Xiaoqi Li<sup>1</sup></span>
+                <span class="author">Haolin Yang<sup>1</sup></span>
+                <span class="author">Dongjiang Li<sup>3</sup></span>
+                <span class="author">Hui Shen<sup>3</sup></span>
+                <span class="author">Hao Dong<sup>1,†</sup></span>
+              </span>
+            </p>
+            <ul class="affil-list" aria-label="Affiliations">
+              <li id="affiliation-1"><sup>1</sup><span>Center on Frontiers of Computing Studies, School of Computer Science, Peking University</span></li>
+              <li id="affiliation-2"><sup>2</sup><span>Beijing University of Aeronautics and Astronautics</span></li>
+              <li id="affiliation-3"><sup>3</sup><span>Jingdong Technology Information Technology Co., Ltd</span></li>
+            </ul>
             <p class="affil-notes">
-            <span><sup>*</sup> Equal contribution</span>
-            <span><sup>†</sup> Corresponding author</span>
-          </p>
+              <span><sup>*</sup> Equal contribution</span>
+              <span><sup>†</sup> Corresponding author: <a href="mailto:hao.dong@pku.edu.cn">hao.dong@pku.edu.cn</a></span>
+            </p>
           </div>
           <div class="cta-row" aria-label="Project links">
             <a class="btn btn-primary" href="https://arxiv.org/pdf/2608.15863" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8l-5-5Z M14 3v5h5 M9 13h6 M9 17h6"/></svg>Paper <span class="btn-tag">PDF ↗</span></a>
@@ -72,8 +87,7 @@
               fetchpriority="high"
             /></a>
             <figcaption>
-              <a class="full-size-link" href="assets/figures/fig1-capabilities.png" target="_blank" rel="noopener noreferrer">View full-size figure <span aria-hidden="true">↗</span></a>
-              <h2>What AppliancePlan enables</h2>
+              <div class="caption-heading"><h2>What AppliancePlan enables</h2><a class="full-size-link" href="assets/figures/fig1-capabilities.png" target="_blank" rel="noopener noreferrer">View full-size figure <span aria-hidden="true">↗</span></a></div>
               <p class="overview-summary">Precise knob control, touch-panel operation, and closed-loop replanning under disturbance—while outperforming strong large-model baselines on RealAppliance-Bench.</p>
               <p>
                 Capabilities of our AppliancePlan model. Left: AppliancePlan plans
@@ -561,6 +575,6 @@
       </div>
     </footer>
 
-    <script src="script.js?v=20261002c"></script>
+    <script src="script.js?v=20261002d"></script>
   </body>
 </html>
