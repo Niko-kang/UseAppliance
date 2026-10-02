@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#0b1220" />
+    <meta name="theme-color" content="#f7f5ef" />
     <title>UseAppliance — Manual-Grounded Appliance Manipulation</title>
     <meta
       name="description"
@@ -12,10 +12,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;550;600;650;700;750;800;850&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;550;600;650;700;750;800;850&family=Manrope:wght@500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20261002" />
+    <link rel="stylesheet" href="styles.css?v=20261002b" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -38,13 +38,53 @@
 
     <main id="main">
       <section id="top" class="hero" aria-label="Project introduction">
-        <div class="hero-grid" aria-hidden="true"></div>
-        <div class="shell hero-content">
-          <p class="hero-eyebrow"><span class="venue-badge">ACMMM 2026</span><span>Manual-grounded robotics</span></p>
-          <h1 class="brand">UseAppliance</h1>
-          <p class="paper-title">Scaling Manual-Grounded Appliance Manipulation<br class="title-break" /> with Data Synthesis and Unified Planning</p>
-          <p class="headline">Manual-grounded appliance manipulation—from data synthesis to a unified planner.</p>
-          <div class="author-block">
+        <div class="shell">
+          <div class="hero-layout">
+            <div class="hero-copy">
+              <p class="hero-eyebrow"><span class="venue-badge">ACMMM 2026</span> Household robotics</p>
+              <h1 class="brand">Use<span>Appliance</span></h1>
+              <p class="hero-statement">Turning manuals<br />into <em>robot actions.</em></p>
+              <p class="headline">Ground the right part. Plan the operation.<br />Recover when the world changes.</p>
+              <div class="cta-row" aria-label="Project links">
+            <a class="btn btn-primary" href="https://arxiv.org/pdf/2608.15863" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8l-5-5Z M14 3v5h5 M9 13h6 M9 17h6"/></svg>Paper <span class="btn-tag">PDF ↗</span></a>
+            <a class="btn btn-ghost" href="https://openreview.net/forum?id=o8kAoRq565" target="_blank" rel="noopener noreferrer">OpenReview <span aria-hidden="true">↗</span></a>
+            <a class="btn btn-ghost" href="#cite">BibTeX <span aria-hidden="true">↓</span></a>
+            <span class="btn btn-disabled" aria-disabled="true">Code <span class="btn-tag">Soon</span></span>
+          </div>
+              <a class="explore-link" href="#robot"><span class="play-mark" aria-hidden="true">▶</span> See the real-robot experiments <span aria-hidden="true">↗</span></a>
+            </div>
+            <div class="appliance-study">
+              <div class="study-header"><span><i aria-hidden="true"></i> Appliance field notes</span><span>FIG. 01 / REAL ROBOT</span></div>
+              <div class="study-tabs" role="tablist" aria-label="Explore AppliancePlan capabilities">
+                <button id="tab-ground" role="tab" type="button" aria-selected="true" aria-controls="panel-ground" tabindex="0"><span>01</span> Ground</button>
+                <button id="tab-plan" role="tab" type="button" aria-selected="false" aria-controls="panel-plan" tabindex="-1"><span>02</span> Plan</button>
+                <button id="tab-recover" role="tab" type="button" aria-selected="false" aria-controls="panel-recover" tabindex="-1"><span>03</span> Recover</button>
+              </div>
+              <div id="panel-ground" class="study-panel" role="tabpanel" aria-labelledby="tab-ground" tabindex="0">
+                <svg class="experiment-crop" viewBox="378 86 330 183" role="img" aria-label="Robot interacting with a microwave control in the real-robot experiment"><image href="assets/figures/fig1-capabilities.png" width="1916" height="1042" /></svg>
+                <div class="study-caption"><span class="appliance-tag">Microwave</span><span>Manual → part</span></div>
+                <div class="study-note"><span class="note-number">01</span><div><h2>Find the control that matters.</h2><p>Connect a part named in the manual to its location in the observation.</p></div></div>
+                <div class="action-tokens"><span>Manual reference</span><span aria-hidden="true">→</span><strong>Part grounding</strong></div>
+              </div>
+              <div id="panel-plan" class="study-panel" role="tabpanel" aria-labelledby="tab-plan" tabindex="0" hidden>
+                <svg class="experiment-crop" viewBox="375 337 331 177" role="img" aria-label="Robot operating the coffee machine touch panel in the real-robot experiment"><image href="assets/figures/fig1-capabilities.png" width="1916" height="1042" /></svg>
+                <div class="study-caption"><span class="appliance-tag">Coffee machine</span><span>Instruction → plan</span></div>
+                <div class="study-note"><span class="note-number">02</span><div><h2>Make the instruction executable.</h2><p>Use the manual, scene, and task to generate a parameterized sequence of atomic actions.</p></div></div>
+                <div class="action-tokens"><span>Task instruction</span><span aria-hidden="true">→</span><strong>Action sequence</strong></div>
+              </div>
+              <div id="panel-recover" class="study-panel" role="tabpanel" aria-labelledby="tab-recover" tabindex="0" hidden>
+                <svg class="experiment-crop" viewBox="374 591 333 180" role="img" aria-label="A person interrupts the air fryer door during the real-robot recovery experiment"><image href="assets/figures/fig1-capabilities.png" width="1916" height="1042" /></svg>
+                <div class="study-caption"><span class="appliance-tag">Air fryer</span><span>Disturbance → adjustment</span></div>
+                <div class="study-note"><span class="note-number">03</span><div><h2>Adjust when the scene changes.</h2><p>Use action history and the latest observation to choose the next corrective step.</p></div></div>
+                <div class="action-tokens"><span>Changed state</span><span aria-hidden="true">→</span><strong>Closed-loop recovery</strong></div>
+              </div>
+              <p class="study-source">Experiment images from Fig. 1 · Select a capability to explore.</p>
+            </div>
+          </div>
+          <div class="publication-strip">
+            <p class="section-label">The paper</p>
+            <p class="paper-title">Scaling Manual-Grounded Appliance Manipulation<br class="title-break" /> with Data Synthesis and Unified Planning</p>
+            <div class="author-block">
             <p class="authors"><span class="author">
             Yuxing Long<sup>*</sup></span><span class="author">Lei Kang<sup>*1,2</sup></span><span class="author">Ziyan Yu<sup>1</sup></span><span class="author">Yuzheng Gao<sup>1</sup></span><span class="author">Bin Cheng<sup>2</sup></span><span class="author">Jiyao Zhang</span><span class="author">Xiaoqi Li<sup>1</sup></span><span class="author">Haolin Yang<sup>1</sup></span><span class="author">Dongjiang Li<sup>2</sup></span><span class="author">Hui Shen<sup>2</sup></span><span class="author">Hao Dong<sup>†1</sup>
           </span></p>
@@ -57,19 +97,58 @@
             <span><sup>†</sup> Corresponding author</span>
           </p>
           </div>
-          <div class="cta-row" aria-label="Project links">
-            <a class="btn btn-primary" href="https://arxiv.org/pdf/2608.15863" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8l-5-5Z M14 3v5h5 M9 13h6 M9 17h6"/></svg>Paper <span class="btn-tag">PDF ↗</span></a>
-            <a class="btn btn-ghost" href="https://openreview.net/forum?id=o8kAoRq565" target="_blank" rel="noopener noreferrer">OpenReview <span aria-hidden="true">↗</span></a>
-            <a class="btn btn-ghost" href="#cite">BibTeX <span aria-hidden="true">↓</span></a>
-            <span class="btn btn-disabled" aria-disabled="true">Code <span class="btn-tag">Soon</span></span>
           </div>
-          <div id="overview" class="hero-overview">
-            <div class="figure-topline"><span>Research overview</span><span>MAGE → UseAppliance → AppliancePlan</span></div>
-            <figure class="figure hero-figure">
+        </div>
+      </section>
+      <nav class="research-route" aria-label="The research path">
+        <div class="shell route-grid">
+          <a href="#mage"><span class="route-number">01 / SYNTHESIZE</span><strong>MAGE</strong><span>Manuals → structured knowledge</span><b aria-hidden="true">↗</b></a>
+          <a href="#dataset"><span class="route-number">02 / SCALE</span><strong>UseAppliance</strong><span>22 categories · 53K+ tasks</span><b aria-hidden="true">↗</b></a>
+          <a href="#model"><span class="route-number">03 / LEARN</span><strong>AppliancePlan</strong><span>7B · grounding, planning, recovery</span><b aria-hidden="true">↗</b></a>
+          <a href="#robot"><span class="route-number">04 / OPERATE</span><strong>Real appliances</strong><span>Knobs · touch panels · recovery</span><b aria-hidden="true">↗</b></a>
+        </div>
+      </nav>
+
+      <section id="abstract" class="section abstract-section">
+        <div class="shell">
+          <header class="section-head">
+            <p class="section-label">Abstract</p>
+            <h2>Everyday appliances.<br />A demanding planning problem.</h2>
+            <p>A complete path from appliance documentation to grounded, long-horizon robot planning.</p>
+          </header>
+          <div class="abstract-layout">
+          <p class="abstract-text">
+            Operating household appliances requires long-horizon planning that is state-dependent
+            and robust to disturbances, yet existing large models fall short without sufficient
+            task-oriented data. We propose <strong>MAGE</strong>, a scalable synthesis pipeline with a
+            Hierarchical Appliance Graph (HAG) that generates grounding, planning, and closed-loop
+            recovery data from manuals. With MAGE we build <strong>UseAppliance</strong>—22 categories,
+            89K+ part annotations, 53K+ tasks, 33K+ closed-loop steps—and train
+            <strong>AppliancePlan</strong>, a 7B end-to-end planner. On RealAppliance-Bench it achieves
+            over 10× the best baseline on open-loop planning, leads across all tracks, and
+            transfers to real robots on six appliances.
+          </p>
+          <aside class="research-thesis" aria-label="Research components">
+            <p class="explain-kicker">Inside the manual</p>
+            <p class="thesis-title">Structure the knowledge.<br />Ground the operation.</p>
+            <ol class="manual-tree"><li><span>01</span> Document</li><li><span>02</span> Page</li><li><span>03</span> Part</li><li><span>04</span> State</li></ol>
+            <p class="graph-note">The Hierarchical Appliance Graph connects documentation to parts and states for data synthesis.</p>
+          </aside>
+          </div>
+        </div>
+      </section>
+
+
+
+
+      <section id="overview" class="section overview-section">
+        <div class="shell">
+          <header class="section-head"><p class="section-label">In the real world</p><h2>Different controls.<br />One grounded planner.</h2><p>Mechanical controls, touch interfaces, and disturbances put manual-grounded planning to the test.</p></header>
+          <figure class="figure overview-figure">
             <img width="1916" height="1042"
               src="assets/figures/fig1-capabilities.png"
               alt="Capabilities of AppliancePlan: manipulation sequences and RealAppliance-Bench radar comparison."
-              fetchpriority="high"
+              loading="lazy"
             />
             <figcaption>
               <h2>What AppliancePlan enables</h2>
@@ -89,52 +168,18 @@
               </p>
             </figcaption>
           </figure>
-          </div>
-          <div class="hero-stat-row" aria-label="Research highlights">
+          <div class="overview-stats" aria-label="Research highlights">
             <div><strong>&gt;10×</strong><span>Open-loop task success<br />vs. best baseline</span></div>
             <div><strong>7B</strong><span>Unified model for<br />grounding &amp; planning</span></div>
             <div><strong>6</strong><span>Real household<br />appliances</span></div>
           </div>
-          <a class="explore-link" href="#abstract">Explore the research <span aria-hidden="true">↓</span></a>
         </div>
       </section>
-
-      <section id="abstract" class="section abstract-section">
-        <div class="shell">
-          <header class="section-head">
-            <p class="section-label">Abstract</p>
-            <h2>Read the manual.<br />Plan the task. Recover in the world.</h2>
-            <p>A complete path from appliance documentation to grounded, long-horizon robot planning.</p>
-          </header>
-          <div class="abstract-layout">
-          <p class="abstract-text">
-            Operating household appliances requires long-horizon planning that is state-dependent
-            and robust to disturbances, yet existing large models fall short without sufficient
-            task-oriented data. We propose <strong>MAGE</strong>, a scalable synthesis pipeline with a
-            Hierarchical Appliance Graph (HAG) that generates grounding, planning, and closed-loop
-            recovery data from manuals. With MAGE we build <strong>UseAppliance</strong>—22 categories,
-            89K+ part annotations, 53K+ tasks, 33K+ closed-loop steps—and train
-            <strong>AppliancePlan</strong>, a 7B end-to-end planner. On RealAppliance-Bench it achieves
-            over 10× the best baseline on open-loop planning, leads across all tracks, and
-            transfers to real robots on six appliances.
-          </p>
-          <aside class="research-thesis" aria-label="Research components">
-            <p class="explain-kicker">From knowledge to action</p>
-            <p class="thesis-title">Turn everyday manuals into a foundation for appliance manipulation.</p>
-            <a href="#mage"><span>01</span><strong>MAGE</strong><span>Data synthesis ↗</span></a>
-            <a href="#dataset"><span>02</span><strong>UseAppliance</strong><span>Training corpus ↗</span></a>
-            <a href="#model"><span>03</span><strong>AppliancePlan</strong><span>Unified planner ↗</span></a>
-          </aside>
-          </div>
-        </div>
-      </section>
-
-
 
       <section id="mage" class="section section-alt">
         <div class="shell">
           <header class="section-head">
-            <p class="section-label">MAGE</p>
+            <p class="section-label">01 / MAGE · The data engine</p>
             <h2>From manuals to grounded training data</h2>
             <p>
               MAGE builds a Hierarchical Appliance Graph (HAG) from document to
@@ -214,7 +259,7 @@
       <section id="dataset" class="section">
         <div class="shell">
           <header class="section-head">
-            <p class="section-label">UseAppliance</p>
+            <p class="section-label">02 / UseAppliance · The corpus</p>
             <h2>Scale of the training corpus</h2>
             <p>
               UseAppliance is the first large-scale dataset for manual-grounded
@@ -271,7 +316,7 @@
       <section id="model" class="section section-alt">
         <div class="shell">
           <header class="section-head">
-            <p class="section-label">AppliancePlan</p>
+            <p class="section-label">03 / AppliancePlan · The planner</p>
             <h2>One 7B model for grounding, planning, and recovery</h2>
             <p>
               Built on Qwen2.5-VL-7B-Instruct and trained on UseAppliance,
@@ -334,7 +379,7 @@
       <section id="results" class="section">
         <div class="shell">
           <header class="section-head">
-            <p class="section-label">RealAppliance-Bench</p>
+            <p class="section-label">Evaluation / RealAppliance-Bench</p>
             <h2>Results that lead every track</h2>
             <p>
               AppliancePlan beats proprietary MLLMs, open-source MLLMs, and
@@ -436,7 +481,7 @@
       <section id="robot" class="section section-alt">
         <div class="shell">
           <header class="section-head">
-            <p class="section-label">Real Robot</p>
+            <p class="section-label">04 / Real appliances · The deployment</p>
             <h2>Deployed on real household appliances</h2>
             <p>
               Three real-robot demos: mechanical controls, touch panels, and
@@ -559,6 +604,6 @@
       </div>
     </footer>
 
-    <script src="script.js?v=20261002"></script>
+    <script src="script.js?v=20261002b"></script>
   </body>
 </html>

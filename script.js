@@ -47,6 +47,32 @@
   window.addEventListener("resize", updateCurrentSection);
   updateCurrentSection();
 
+  // A small, keyboard-accessible field notebook explains the three capabilities.
+  const capabilityTabs = [...document.querySelectorAll('.study-tabs [role="tab"]')];
+  function activateCapability(tab) {
+    capabilityTabs.forEach((item) => {
+      const selected = item === tab;
+      item.setAttribute("aria-selected", String(selected));
+      item.tabIndex = selected ? 0 : -1;
+      const panel = document.getElementById(item.getAttribute("aria-controls"));
+      if (panel) panel.hidden = !selected;
+    });
+  }
+  capabilityTabs.forEach((tab, index) => {
+    tab.addEventListener("click", () => activateCapability(tab));
+    tab.addEventListener("keydown", (event) => {
+      let next = index;
+      if (event.key === "ArrowRight") next = (index + 1) % capabilityTabs.length;
+      else if (event.key === "ArrowLeft") next = (index - 1 + capabilityTabs.length) % capabilityTabs.length;
+      else if (event.key === "Home") next = 0;
+      else if (event.key === "End") next = capabilityTabs.length - 1;
+      else return;
+      event.preventDefault();
+      activateCapability(capabilityTabs[next]);
+      capabilityTabs[next].focus();
+    });
+  });
+
   const copyButton = document.getElementById("copy-bibtex");
   const bibtex = document.getElementById("bibtex");
   const status = document.getElementById("copy-status");
